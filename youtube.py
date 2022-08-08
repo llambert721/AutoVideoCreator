@@ -1,6 +1,6 @@
 from pytube import YouTube
 import pytube
-from init_functions import *
+from misc_functions import *
 
 config = config_create()
 

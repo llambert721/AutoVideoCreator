@@ -1,6 +1,6 @@
 import pyinputplus as pyip
 from youtube import yt_downloader
-from init_functions import *
+from misc_functions import *
 import editing
 
 

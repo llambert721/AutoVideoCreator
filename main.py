@@ -1,4 +1,4 @@
-from init_functions import *
+from misc_functions import *
 folder_file_create()  # Creates folders / files for videos (skips if they already exist)
 from choices import *
 

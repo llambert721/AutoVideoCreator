@@ -1,6 +1,6 @@
 from moviepy.editor import *
 import random
-from init_functions import *
+from misc_functions import *
 
 config = config_create()
 
