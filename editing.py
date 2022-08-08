@@ -49,8 +49,8 @@ def trim_video(video: CompositeVideoClip):
         return clips
 
     while True:
-        end = trim_math(video.duration, subclip_start)
-
+        end = trim_math(int(video.duration), subclip_start)
+        
         if end == int(video.duration):
             trimed_video = video.subclip(subclip_start, end)
             clips.append(trimed_video)
@@ -72,6 +72,6 @@ def trim_math(duration: int, curr):
 
 
 def trim_bottom_to_top(top_video: CompositeVideoClip, bottom_video: CompositeVideoClip):
-    if top_video.duration < bottom_video.duration:
-        bottom_video = bottom_video.subclip(0, top_video.duration)
+    if int(top_video.duration) < int(bottom_video.duration):
+        bottom_video = bottom_video.subclip(0, int(top_video.duration))
     return bottom_video
