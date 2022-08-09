@@ -12,7 +12,7 @@ I see these kinds of videos all across Tiktok constantly! I thought why not auto
 - Python 3.9+
 
 ## Installation
-- Clone this repository or download from releases.
+- Clone this repository using `git clone https://github.com/EvilWumpus/AutoVideoCreator.git`
 - Run `pip install -r requirements.txt`
 - Run `python main.py`
 - You can configure bot in the `config.toml` file
