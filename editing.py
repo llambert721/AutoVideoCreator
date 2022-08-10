@@ -15,8 +15,8 @@ def video_edit(top_vid, bottom_vid):
         if video_exists(final_name + "-PT1.mp4", paths["videos_final"]):
             print(f"Skipped rendering {value} since it already exists!")
             continue
-
-        top_clip = VideoFileClip(f"./videos_temp/top/{value}.mp4")
+       
+        top_clip = VideoFileClip(f"videos_temp/top/{value}.mp4")
         bottom_clip = VideoFileClip(f"./videos_temp/bottom/{random.choice(bottom_vid)}.mp4")
         bottom_clip_edit = bottom_clip
 

@@ -2,26 +2,27 @@ import os
 import pyinputplus as pyip
 import re
 import toml
+from pathlib import Path
 from configwriter import config_write
 from termcolor import colored
 
-paths = {"bottom_video_links": "./text_files/bottom_video_links.txt",
-         "top_video_links": "./text_files/top_video_links.txt",
-         "config": "./text_files/config.toml",
-         "videos_final": "./videos_final",
-         "temp_top": "./videos_temp/top",
-         "temp_bottom": "./videos_temp/bottom",
-         "text_files": "./text_files",
-         "videos_temp": "./videos_temp"}
+paths = {"bottom_video_links": Path("text_files", "bottom_video_links.txt"),
+         "top_video_links": Path("text_files", "top_video_links.txt"),
+         "config": Path("text_files", "config.toml"),
+         "videos_final": Path("videos_final"),
+         "temp_top": Path("videos_temp", "top"),
+         "temp_bottom": Path("videos_temp", "bottom"),
+         "text_files": Path("text_files"),
+         "videos_temp": Path("videos_temp")}
 
 
 def folder_file_create():
-    folders = ["videos_final", "videos_temp", "text_files"]
-    sub_folders = ["top", "bottom"]
-    files = ["top_video_links.txt", "bottom_video_links.txt", "config.toml"]
+    folders = [Path("videos_final"), Path("videos_temp"), Path("text_files")]
+    sub_folders = [Path("top"), Path("bottom")]
+    files = [Path("top_video_links.txt"), Path("bottom_video_links.txt"), Path("config.toml")]
 
     for folder in folders:  # Creates base folders
-        path = os.path.join("./", folder)
+        path = os.path.join(folder)
         try:
             os.makedirs(path)
         except FileExistsError:
@@ -47,7 +48,7 @@ def folder_file_create():
         config_write(paths["config"])
 
 def config_create():
-    config = toml.load(f="text_files/config.toml")
+    config = toml.load(f=paths["config"])
     return config
 
 

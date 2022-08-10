@@ -3,3 +3,4 @@ pytube
 moviepy
 termcolor
 toml
+pathlib

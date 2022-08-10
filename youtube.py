@@ -1,6 +1,7 @@
 from pytube import YouTube
 import pytube
 from misc_functions import *
+from pathlib import Path
 
 config = config_create()
 
@@ -31,7 +32,7 @@ def yt_downloader(url, folder):
             vid_title += "-temp"
 
         print("Downloading video...")
-        vid.download(output_path=f"videos_temp\\{folder}", filename=f"{vid_title}.mp4")
+        vid.download(output_path=Path(paths["videos_temp"], folder), filename=f"{vid_title}.mp4")
         vid_downloaded = 1
 
     return (vid_downloaded, vid_title)
