@@ -1,5 +1,6 @@
 # AutoVideoCreator
 Automatically downloads Youtube videos and edits them into trending tiktok "styled" videos.
+
 Created by EvilWumpus
 
 ## Video Example
