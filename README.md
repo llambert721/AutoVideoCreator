@@ -1,6 +1,5 @@
 # AutoVideoCreator
-Automatically downloads Youtube videos and edits them into trending tiktok "styled" videos.
-
+Automatically downloads Youtube videos and edits them into trending tiktok "styled" videos. <br />
 Created by EvilWumpus
 
 ## Video Example
@@ -28,7 +27,8 @@ All contributions are greatly appreciated, dont be nervous to contribute even if
 - [ ] Add config option to limit amount of PT's created
 - [ ] Add more bottom videos if top videos longer
 - [ ] Improve readability of code (more comments are greatly needed)
-- [ ] Automatic youtube video scraper
+- [ ] Automatic youtube video scraper <br />
+
 If you have anymore suggestions please contact me or make an issue.
 
 ## Contacts
