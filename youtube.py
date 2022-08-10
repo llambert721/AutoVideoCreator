@@ -1,16 +1,20 @@
+"""Module downloads videos from youtube"""
+from pathlib import Path
 from pytube import YouTube
 import pytube
-from misc_functions import *
-from pathlib import Path
+from misc_functions import clean_title, video_exists, paths
+from config_funcs import config_create
 
-config = config_create()
+#config = config_create(paths["config"])
 
-def yt_downloader(url, folder):
+def yt_downloader(urls, folder):
+    """Functions takes youtube URL and downloads the video"""
+    config = config_create(paths["config"])
     vid_downloaded = 0
-    if type(url) != list:
-        url = list(url.split(" "))
+    if isinstance(urls, list) is False:
+        urls = list(urls.split(" "))
 
-    for url in url:
+    for url in urls:
         try:
             vid = YouTube(url).streams.get_highest_resolution()
         except pytube.exceptions.RegexMatchError:

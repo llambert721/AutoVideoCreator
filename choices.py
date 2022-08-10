@@ -1,10 +1,12 @@
+"""Module handles user choice"""
 import pyinputplus as pyip
 from youtube import yt_downloader
-from misc_functions import *
+from misc_functions import clear, folder_clear, delete_dup_links, file_read, paths
 import editing
 
 
 def single_vid():
+    """Function handles single video flow"""
     url = pyip.inputURL(prompt="Enter top video URL: ")
     downloads, top_video = yt_downloader(url, "top")
     print(f"Downloaded {downloads} top video!")
@@ -18,12 +20,14 @@ def single_vid():
 
 
 def clear_temp_files():
+    """Function clears all -temp video files"""
     folder_clear(paths["temp_bottom"])
     folder_clear(paths["temp_top"])
     print("Cleared all temp files!")
 
 
 def multiple_vids():
+    """Function handles multiple video flow"""
     delete_dup_links(paths["top_video_links"])
     delete_dup_links(paths["bottom_video_links"])
 

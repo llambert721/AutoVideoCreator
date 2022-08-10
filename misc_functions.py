@@ -1,9 +1,8 @@
+"""Module contains random useful functions across the project"""
 import os
-import pyinputplus as pyip
-import re
-import toml
 from pathlib import Path
-from configwriter import config_write
+import re
+import pyinputplus as pyip
 from termcolor import colored
 
 paths = {"bottom_video_links": Path("text_files", "bottom_video_links.txt"),
@@ -15,11 +14,11 @@ paths = {"bottom_video_links": Path("text_files", "bottom_video_links.txt"),
          "text_files": Path("text_files"),
          "videos_temp": Path("videos_temp")}
 
-
 def folder_file_create():
+    """Function creates all neccesary folders and files for the project"""
     folders = [Path("videos_final"), Path("videos_temp"), Path("text_files")]
     sub_folders = [Path("top"), Path("bottom")]
-    files = [Path("top_video_links.txt"), Path("bottom_video_links.txt"), Path("config.toml")]
+    files = [Path("top_video_links.txt"), Path("bottom_video_links.txt")]
 
     for folder in folders:  # Creates base folders
         path = os.path.join(folder)
@@ -38,34 +37,31 @@ def folder_file_create():
     for file in files:
         path = os.path.join(paths["text_files"], file)
         try:
-            with open(path, "x") as f:
+            with open(path, "x", encoding="utf-8"):
                 continue
         except FileExistsError:
             continue
 
-    lines = file_read(paths["config"])
-    if len(lines) <= 0:
-        config_write(paths["config"])
-
-def config_create():
-    config = toml.load(f=paths["config"])
-    return config
 
 
 def start():
+    """Function handles intial start flow"""
     print_avc()
-    response = pyip.inputMenu(choices=["Single Video", "Multiple Videos", "Clear Temp Files", "Cancel"],
-                              numbered=True)
+    response = pyip.inputMenu(choices=["Single Video", "Multiple Videos",
+                                "Clear Temp Files", "Cancel"],
+                                numbered=True)
     clear()
 
     return response
 
 
 def clear():  # Clears terminal
+    """Function clears terminal screen"""
     os.system('cls' if os.name == 'nt' else 'clear')
 
 
 def folder_clear(path):
+    """Function deletes all files in given path"""
     files = os.listdir(path)
     temp_files = check_file_ending(files)
 
@@ -74,6 +70,7 @@ def folder_clear(path):
 
 
 def check_folders():
+    """Function check if temp files exist and clears them if True"""
     top_files = os.listdir(paths["temp_top"])
     bottom_files = os.listdir(paths["temp_bottom"])
 
@@ -84,21 +81,24 @@ def check_folders():
 
 
 def check_file_ending(files: list):
+    """Function checks if files ends with -temp or not"""
     delete_files = []
-    for f in files:
-        f = str(f)
-        if f.endswith("-temp.mp4"):
-            delete_files.append(f)
+    for file in files:
+        file = str(file)
+        if file.endswith("-temp.mp4"):
+            delete_files.append(file)
     return delete_files
 
 
 def file_read(file):
-    with open(file) as f:
-        lines = f.readlines()
+    """Function used to read file lines"""
+    with open(file, encoding="utf-8") as open_file:
+        lines = open_file.readlines()
         return lines
 
 
 def clean_title(title):
+    """Function uses regex to clean YT video titles into usable file names"""
     temp = re.sub(r"\.[a-zA-Z]{,4}$", "", title)  # remove any file ending ex: ".exe"
     temp = re.sub(r"\s", "_", temp)  # replace white spaces with an underscore
     temp = re.sub(r"\W", "", temp)  # remove any slashes
@@ -115,6 +115,7 @@ def clean_title(title):
 
 
 def delete_dup_links(file):
+    """Function delete duplicate URL links"""
     raw_dup_lines = file_read(file)
     cleaned_dup_lines = []
     for i in raw_dup_lines:
@@ -125,11 +126,13 @@ def delete_dup_links(file):
 
 
 def file_write(file, links):
-    with open(file, "w") as f:
-        f.writelines(link + "\n" for link in links)
+    """Function writes to files"""
+    with open(file, "w", encoding="utf-8") as open_file:
+        open_file.writelines(link + "\n" for link in links)
 
 
 def video_exists(file_name, path):
+    """Function checks if videos in path exist"""
     files = os.listdir(path)
 
     if file_name in files:
@@ -139,6 +142,7 @@ def video_exists(file_name, path):
 
 
 def print_avc():
+    """Function print starting logo"""
     avc = """
    ▄████████  ▄█    █▄   ▄████████ 
   ███    ███ ███    ███ ███    ███ 
@@ -151,4 +155,3 @@ def print_avc():
 """
     colored_avc = colored(avc, color="blue")
     print(colored_avc)
-

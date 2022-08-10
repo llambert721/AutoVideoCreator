@@ -1,11 +1,16 @@
-from moviepy.editor import *
+"""Module edits all videos into one file"""
 import random
-from misc_functions import *
+from moviepy.editor import VideoFileClip, clips_array, CompositeVideoClip
+from misc_functions import video_exists, paths
+from config_funcs import config_create
 
-config = config_create()
+#config = config_create(paths["config"])
 
 def video_edit(top_vid, bottom_vid):
-    if type(top_vid) != list or type(bottom_vid) != list:
+    """Function edits top and bottom video into one final file"""
+    config = config_create(paths["config"])
+
+    if isinstance(top_vid, list) is False or isinstance(bottom_vid, list) is False:
         top_vid = list(top_vid.split(" "))
         bottom_vid = list(bottom_vid.split(" "))
 
@@ -15,7 +20,6 @@ def video_edit(top_vid, bottom_vid):
         if video_exists(final_name + "-PT1.mp4", paths["videos_final"]):
             print(f"Skipped rendering {value} since it already exists!")
             continue
-       
         top_clip = VideoFileClip(f"videos_temp/top/{value}.mp4")
         bottom_clip = VideoFileClip(f"./videos_temp/bottom/{random.choice(bottom_vid)}.mp4")
         bottom_clip_edit = bottom_clip
@@ -40,6 +44,8 @@ def video_edit(top_vid, bottom_vid):
 
 
 def trim_video(video: CompositeVideoClip):
+    """Function trims video to fit certain length"""
+    config = config_create(paths["config"])
     clips = []
     subclip_start = 0
     end = int(video.duration)
@@ -50,7 +56,6 @@ def trim_video(video: CompositeVideoClip):
 
     while True:
         end = trim_math(int(video.duration), subclip_start)
-        
         if end == int(video.duration):
             trimed_video = video.subclip(subclip_start, end)
             clips.append(trimed_video)
@@ -62,16 +67,19 @@ def trim_video(video: CompositeVideoClip):
     return clips
 
 
-def trim_math(duration: int, curr):
+def trim_math(duration: int, curr: int):
+    """Function does math for trim_video function"""
+    config = config_create(paths["config"])
     target = curr + int(config["max_clip_length"])
-    x = duration - target
-    if x <= 0:
+    difference = duration - target
+    if difference <= 0:
         return duration
-    duration = duration - x
+    duration = duration - difference
     return duration
 
 
 def trim_bottom_to_top(top_video: CompositeVideoClip, bottom_video: CompositeVideoClip):
+    """Function trims bottom video to top videos length"""
     if int(top_video.duration) < int(bottom_video.duration):
         bottom_video = bottom_video.subclip(0, int(top_video.duration))
     return bottom_video
