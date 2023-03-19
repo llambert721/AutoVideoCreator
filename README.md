@@ -1,5 +1,5 @@
 # AutoVideoCreator
-Automatically downloads Youtube videos and edits them into trending tiktok "styled" videos.
+Automatically downloads Youtube videos and edits them into trending tiktok "styled" videos. <br />
 Created by EvilWumpus
 
 ## Video Example
@@ -9,10 +9,11 @@ https://user-images.githubusercontent.com/96006583/183562349-74d5403a-354e-481d-
 I see these kinds of videos all across Tiktok constantly! I thought why not automate the process of downloading and editing the videos (and learn Python as this is my first project!).
 
 ## Requirements
-- Python 3.9+
+- Python 3.8+
 
 ## Installation
 - Clone this repository using `git clone https://github.com/EvilWumpus/AutoVideoCreator.git`
+  - Or download from [releases](https://github.com/EvilWumpus/AutoVideoCreator/releases)
 - Run `pip install -r requirements.txt`
 - Run `python main.py`
 - You can configure bot in the `config.toml` file
@@ -26,7 +27,8 @@ All contributions are greatly appreciated, dont be nervous to contribute even if
 - [ ] Add config option to limit amount of PT's created
 - [ ] Add more bottom videos if top videos longer
 - [ ] Improve readability of code (more comments are greatly needed)
-- [ ] Automatic youtube video scraper
+- [ ] Automatic youtube video scraper <br />
+
 If you have anymore suggestions please contact me or make an issue.
 
 ## Contacts
