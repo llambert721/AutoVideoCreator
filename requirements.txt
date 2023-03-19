@@ -1,5 +1,5 @@
 pyinputplus
-pytube
+git+https://github.com/pytube/pytube.git@refs/pull/1516/head#egg=pytube
 moviepy
 termcolor
 toml
