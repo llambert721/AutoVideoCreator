@@ -32,5 +32,5 @@ All contributions are greatly appreciated, dont be nervous to contribute even if
 If you have anymore suggestions please contact me or make an issue.
 
 ## Contacts
-- Owner - EvilWumpus
-  - Discord: wumpus#5598
+- Owner - Logan Lambert
+  - Discord: 4to6
