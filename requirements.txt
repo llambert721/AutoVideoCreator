@@ -1,6 +1,6 @@
 pyinputplus
 pytube==15.0.0
-moviepy
+moviepy==1.0.3
 termcolor
 toml
 pathlib
